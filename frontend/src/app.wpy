@@ -1,0 +1,161 @@
+<style lang="less">
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+import wepy from '@wepy/core';
+import eventHub from './common/eventHub';
+import wepyRedux from '@wepy/redux';
+
+wepy.use(wepyRedux);
+
+wepy.app({
+  hooks: {
+    // App 级别 hook，对整个 App 生效
+    // 同时存在 Page hook 和 App hook 时，优先执行 Page hook，返回值再交由 App hook 处
+    'before-setData': function(dirty) {
+      return dirty;
+    }
+  },
+  
+  globalData: {
+    userInfo: null,
+    userid: null, // 当前用户 ID
+    pid: null, // 分享者 ID
+    projectid: 0, // 项目 ID
+    shareTicket: null,
+    openPopup: false,
+    projectList: [],
+    currentProject: {},
+    userPoints: -1,
+    landscapeVisible: false,
+    dataRooms: 3,
+  },
+
+  onShow: async function(opt) {
+    if (!wx.cloud) {
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力');
+    } else {
+      wx.cloud.init({
+        traceUser: true
+      });
+    } 
+
+    console.log('转发参数', opt);
+    // 设置转发参数
+    var gData = this.$options.globalData
+    if (opt.query.pid !== '' && opt.query.pid !== undefined) {
+      gData.pid = opt.query.pid;
+      console.log('pid: ', gData.pid);
+    }
+
+    if (opt.query.projectid !== '' && opt.query.projectid !== undefined) {
+      gData.projectid = opt.query.projectid; 
+      console.log('projectid: ', gData.projectid);
+    }
+
+    if (opt.query.openPopup !== '' || opt.query.openPopup !== undefined) {
+      gData.openPopup = Boolean(opt.query.openPopup);
+    }
+
+    // get current userId
+    let res = await wx.cloud.callFunction({
+      name: 'getOpenID'
+    });
+
+    gData.userid = res.result.openid;
+    // get shareTicket
+    gData.shareTicket = opt.shareTicket;
+    console.log('userid', gData.userid);
+
+    // 每次 show 的时候更新项目列表。
+    // wx.request({
+    //   url: 'https://xcx.zhenghaodichan.com/api/v1/project/list',
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   method: 'POST',
+    //   success (res) {
+    //     console.log(res, "res")
+    //     if (res.data.Projects && (res.data.Projects.length > 0)) {
+    //       gData.projectList = res.data.Projects
+    //       gData.currentProject = gData.projectList[0]
+    //     }
+    //   }
+    // }) 
+  },
+
+  onLaunch: function() {
+    if (!wx.cloud) {
+      console.error('请使用 2.2.3 或以上的基础库以使用云能力');
+    } else {
+      wx.cloud.init({
+        traceUser: true
+      });
+    }
+    var gData = this.$options.globalData
+    wx.request({
+      url: 'https://xcx.zhenghaodichan.com/api/v1/project/list',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success (res) {
+        console.log(res, "res")
+        if (res.data.Projects && (res.data.Projects.length > 0)) {
+          gData.projectList = res.data.Projects
+          gData.currentProject = gData.projectList[0]
+        }
+      }
+    }) 
+
+    // 开屏广告
+    wx.request({
+      url: 'https://xcx.zhenghaodichan.com/api/v1/getpopup',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      success (res) {
+        if(res.data.set === "true") {
+          gData.landscapeVisible = true
+        } else {
+          gData.landscapeVisible = false
+        }
+      }
+    })
+
+    wx.getShareInfo({
+      shareTicket: gData.shareTicket,
+      success: data => {
+        console.log('getShareInfo', data);
+      }
+    });
+  },
+});
+</script>
+<config>
+{
+    pages: [
+      "pages/homepage/homepage",
+      "pages/ranking/ranking",
+      "pages/restriction/restriction",
+      "pages/introduction/introduction",
+      "pages/rule/rule",
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      // navigationStyle: 'custom',
+      navigationBarTitleText: '府邸',
+      navigationBarTextStyle: 'black',
+    }
+}
+</config>

@@ -1,0 +1,26 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <div class="container">
+    <web-view src="https://wx.sdwxcx.com/app/index.php?i=354&c=entry&do=xxcx&m=sx_xxtx&wxref=mp.weixin.qq.com" />
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  
+})
+</script>
+
+<config>
+{
+  "navigationBarTitleText": "限行",
+  "usingComponents": {
+    
+  }
+}
+</config>

@@ -1,0 +1,33 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <div class="container">
+    <text>{{ rule }}</text>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  data: {
+    rule: ""
+  },
+  
+  methods: {},
+  created() {
+    this.rule = this.$app.$options.globalData.currentProject.Rule;
+  }
+})
+</script>
+
+<config>
+{
+  "navigationBarTitleText": "项目规则",
+  "usingComponents": {
+    
+  }
+}
+</config>

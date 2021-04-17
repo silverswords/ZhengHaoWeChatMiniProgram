@@ -1,0 +1,142 @@
+<style>
+.background {  
+  background: linear-gradient(135deg, #f3d827 0%,#f3d827 50%,#ffffff 50%,#ffffff 100%);
+  height: 100vh;
+}
+
+.brick-container {  
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.brick {
+  position: relative;
+  height: 300rpx;
+  width: 400rpx;
+  /* border-radius: 30rpx;
+  background: #FFFFFF; */
+  /* box-shadow: 2rpx 6rpx 30rpx 0 rgba(0,0,0,0.4); */
+}
+
+.side1 {
+  position: absolute;
+  top: 140rpx;
+  left: 160rpx;
+  height: 68rpx;
+  width: 180rpx;
+  background: #1D6A9A;
+  transform: skewY(-30deg);
+}
+
+.side2 {
+  position: absolute;
+  top: 166rpx;
+  left: 70rpx;
+  height: 68rpx;
+  width: 90rpx;
+  background: #237FBD;
+  transform: skewY(30deg);
+}
+
+.side3 {
+  position: absolute;
+  top: 9rpx;
+  left: 13rpx;
+  height: 105rpx;
+  width: 180rpx;
+  background: #2696DD;
+  transform: skewY(30deg);
+}
+.side3-bin {
+  transform: rotate(-60deg);
+}
+
+.stud1 {
+  position: absolute;
+  top: 115rpx;
+  left: 95rpx;
+  width: 36rpx; 
+  height: 30rpx; 
+  background: #237FBD;
+  margin-top: 6rpx;
+  border-radius: 18rpx / 10rpx;
+}
+.stud1:before {
+  content: ""; 
+  position: absolute;
+  height: 20rpx;
+  width: 36rpx;
+  border-radius: 18rpx / 10rpx;
+  background: #4CB7FF;
+}
+
+.stud2 {
+  position: absolute;
+  top: 141rpx;
+  left: 141rpx;
+  width: 36rpx; 
+  height: 30rpx; 
+  background: #237FBD;
+  margin-top: 6rpx;
+  border-radius: 18rpx / 10rpx;
+}
+.stud2:before {
+  content: ""; 
+  position: absolute;
+  height: 20rpx;
+  width: 36rpx;
+  border-radius: 18rpx / 10rpx;
+  background: #4CB7FF;
+}
+
+.stud3 {
+  position: absolute;
+  top: 90rpx;
+  left: 141rpx;
+  width: 36rpx; 
+  height: 30rpx; 
+  background: #237FBD;
+  margin-top: 6rpx;
+  border-radius: 18rpx / 10rpx;
+}
+.stud3:before {
+  content: ""; 
+  position: absolute;
+  height: 20rpx;
+  width: 36rpx;
+  border-radius: 18rpx / 10rpx;
+  background: #4CB7FF;
+}
+
+</style>
+
+<template>
+  <div>
+    <div class="brick">
+      <div class="side1"></div>
+      <div class="side2"></div>
+      <div class="side3-bin">
+        <div class="side3"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  
+})
+</script>
+
+<config>
+{
+  "usingComponents": {
+    
+  }
+}
+</config>

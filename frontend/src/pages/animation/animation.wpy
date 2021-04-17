@@ -1,0 +1,2715 @@
+<style>
+[data-rooms='6'] {
+  --wings-width: 425rpx;
+  --front-width: 150rpx;
+}
+
+[data-rooms='6'] .house-wings {
+  width: 425rpx;
+  left: calc(50% - 212.5rpx);
+}
+
+[data-rooms='6'] .house-front {
+  width: 150rpx;
+  left: calc(50% - 75rpx);
+}
+
+[data-rooms='5'] {
+  --wings-width: 355rpx;
+  --front-width: 150rpx;
+}
+
+[data-rooms='5'] .house-wings {
+  width: 355rpx;
+  left: calc(50% - 177.5rpx);
+}
+
+[data-rooms='5'] .house-front {
+  width: 150rpx;
+  left: calc(50% - 75rpx);
+}
+
+[data-rooms='4'] {
+  --wings-width: 300rpx;
+  --front-width: 125rpx;
+}
+
+[data-rooms='4'] .house-wings {
+  width: 300rpx;
+  left: calc(50% - 150rpx);
+}
+
+[data-rooms='4'] .house-front {
+  width: 125rpx;
+  left: calc(50% - 62.5rpx);
+}
+
+[data-rooms='3'] {
+  --wings-width: 240rpx;
+  --front-width: 150rpx;
+}
+
+[data-rooms='3'] .house-wings {
+  width: 240rpx;
+  left: calc(50% - 120rpx);
+}
+
+[data-rooms='3'] .house-front {
+  width: 150rpx;
+  left: calc(50% - 75rpx);
+}
+
+.house {
+  height: 225rpx;
+  width: 520rpx;
+}
+
+.house-label {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: calc(20rpx + 1ch);
+  font-size: 25rpx;
+  color: #224889;
+  margin: 30rpx 0 5rpx;
+  font-family: Arial Rounded MT Bold, Helvetica Neue, Helvetica, sans serif;
+}
+
+.house-label:before,
+.house-label:after {
+  position: absolute;
+  text-align: right;
+  left: 0;
+  top: 0;
+  padding: 0 0.5ch;
+  will-change: transform;
+}
+
+.house-label:before {
+  content: attr(data-prev-rooms);
+}
+
+.house-label:after {
+  content: attr(data-rooms);
+}
+
+.house-label[data-rooms='6'][data-rooms-delta^='-']:before {
+  animation: prev-label-up-6 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='6'][data-rooms-delta^='-']:after {
+  animation: label-up-6 1000ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='6']:not([data-rooms-delta^='-']):before {
+  animation: prev-label-down-6 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='6']:not([data-rooms-delta^='-']):after {
+  animation: label-down-6 1000ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes prev-label-up-6 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes prev-label-down-6 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes label-up-6 {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes label-down-6 {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.house-label[data-rooms='5'][data-rooms-delta^='-']:before {
+  animation: prev-label-up-5 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='5'][data-rooms-delta^='-']:after {
+  animation: label-up-5 1000ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='5']:not([data-rooms-delta^='-']):before {
+  animation: prev-label-down-5 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='5']:not([data-rooms-delta^='-']):after {
+  animation: label-down-5 1000ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes prev-label-up-5 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes prev-label-down-5 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes label-up-5 {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes label-down-5 {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.house-label[data-rooms='4'][data-rooms-delta^='-']:before {
+  animation: prev-label-up-4 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='4'][data-rooms-delta^='-']:after {
+  animation: label-up-4 1000ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='4']:not([data-rooms-delta^='-']):before {
+  animation: prev-label-down-4 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='4']:not([data-rooms-delta^='-']):after {
+  animation: label-down-4 1000ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes prev-label-up-4 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes prev-label-down-4 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes label-up-4 {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes label-down-4 {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.house-label[data-rooms='3'][data-rooms-delta^='-']:before {
+  animation: prev-label-up-3 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='3'][data-rooms-delta^='-']:after {
+  animation: label-up-3 1000ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='3']:not([data-rooms-delta^='-']):before {
+  animation: prev-label-down-3 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house-label[data-rooms='3']:not([data-rooms-delta^='-']):after {
+  animation: label-down-3 1000ms 70ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes prev-label-up-3 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes prev-label-down-3 {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes label-up-3 {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes label-down-3 {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1.5);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.house-wings {
+  position: absolute;
+  bottom: 0;
+  height: 125rpx;
+}
+
+.house-wings:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 5rpx solid #224889;
+  box-shadow: inset 0 15rpx #e1eaff;
+}
+
+.house-wings:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5rpx;
+  width: 100%;
+  background-color: #224889;
+  transform: scaleX(1.2);
+}
+
+.house-wings > .house-roof {
+  height: 65rpx;
+  width: calc(100% + 40rpx);
+  left: -20rpx;
+  border-bottom: 5rpx solid #224889;
+  position: absolute;
+  bottom: 100%;
+}
+
+.house-wings > .house-roof:before,
+.house-wings > .house-roof:after {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background-color: #a6cfff;
+  border: 5rpx solid #224889;
+  border-bottom: none;
+}
+
+.house-wings > .house-roof:before {
+  left: 0;
+  transform-origin: bottom left;
+  transform: skewX(-30deg);
+  border-right: none;
+}
+
+.house-wings > .house-roof:after {
+  right: 0;
+  transform-origin: bottom right;
+  transform: skewX(30deg);
+  border-left: none;
+}
+
+.house-wings .house-ledge {
+  position: absolute;
+  bottom: -15rpx;
+  width: 100%;
+  height: 15rpx;
+  border: 5rpx solid #224889;
+  background-color: #79aaff;
+}
+
+.house-facade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 15rpx 0 rgba(123, 163, 255, 0.2);
+}
+
+.house-facade:before,
+.house-facade:after {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background-color: #fff;
+  top: 0;
+  border-top: 5rpx solid #224889;
+  box-shadow: inset 0 calc(var(--front-width) / 6) #e1eaff;
+}
+
+.house-facade:before {
+  left: 0;
+  transform-origin: top left;
+  transform: skewY(-40deg);
+  border-left: 5rpx solid #224889;
+}
+
+.house-facade:after {
+  right: 0;
+  transform-origin: top right;
+  transform: skewY(40deg);
+  border-right: 5rpx solid #224889;
+}
+
+@keyframes wing-roof-6-move {
+  from {
+    transform-origin: bottom left;
+  }
+  25% {
+    transform: translateY(-10rpx) rotate(-5deg);
+  }
+  50% {
+    transform-origin: bottom left;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom right;
+  }
+  75% {
+    transform-origin: bottom right;
+    transform: translateY(-5rpx) rotate(2deg);
+  }
+  to {
+    transform-origin: bottom right;
+    transform: none;
+  }
+}
+
+@keyframes wing-roof-5-move {
+  from {
+    transform-origin: bottom right;
+  }
+  25% {
+    transform: translateY(-20rpx) rotate(10deg);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom left;
+  }
+  75% {
+    transform-origin: bottom left;
+    transform: translateY(-10rpx) rotate(-2deg);
+  }
+  to {
+    transform-origin: bottom left;
+    transform: none;
+  }
+}
+
+@keyframes wing-roof-4-move {
+  from {
+    transform-origin: bottom left;
+  }
+  25% {
+    transform: translateY(-15rpx) rotate(-10deg);
+  }
+  50% {
+    transform-origin: bottom left;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom right;
+  }
+  75% {
+    transform-origin: bottom right;
+    transform: translateY(-10rpx) rotate(2deg);
+  }
+  to {
+    transform-origin: bottom right;
+    transform: none;
+  }
+}
+
+@keyframes wing-roof-3-move {
+  from {
+    transform-origin: bottom right;
+  }
+  25% {
+    transform: translateY(-20rpx) rotate(10deg);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom left;
+  }
+  75% {
+    transform-origin: bottom left;
+    transform: translateY(-10rpx) rotate(-2deg);
+  }
+  to {
+    transform-origin: bottom left;
+    transform: none;
+  }
+}
+
+@keyframes front-roof-6-move {
+  from {
+    transform-origin: bottom right;
+  }
+  25% {
+    transform: translateY(-5rpx) rotate(5deg);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom left;
+  }
+  75% {
+    transform-origin: bottom left;
+    transform: translateY(-2rpx) rotate(-1deg);
+  }
+  to {
+    transform-origin: bottom left;
+    transform: none;
+  }
+}
+
+@keyframes front-roof-5-move {
+  from {
+    transform-origin: bottom left;
+  }
+  25% {
+    transform: translateY(-10rpx) rotate(-5deg);
+  }
+  50% {
+    transform-origin: bottom left;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom right;
+  }
+  75% {
+    transform-origin: bottom right;
+    transform: translateY(-5rpx) rotate(1deg);
+  }
+  to {
+    transform-origin: bottom right;
+    transform: none;
+  }
+}
+
+@keyframes front-roof-4-move {
+  from {
+    transform-origin: bottom right;
+  }
+  25% {
+    transform: translateY(-5rpx) rotate(10deg);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom left;
+  }
+  75% {
+    transform-origin: bottom left;
+    transform: translateY(-2rpx) rotate(-2deg);
+  }
+  to {
+    transform-origin: bottom left;
+    transform: none;
+  }
+}
+
+@keyframes front-roof-3-move {
+  from {
+    transform-origin: bottom right;
+  }
+  25% {
+    transform: translateY(-10rpx) rotate(-5deg);
+  }
+  50% {
+    transform-origin: bottom right;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom left;
+  }
+  75% {
+    transform-origin: bottom left;
+    transform: translateY(-5rpx) rotate(2deg);
+  }
+  to {
+    transform-origin: bottom left;
+    transform: none;
+  }
+}
+
+@keyframes house-6-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.95, 1.05);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.98, 1.02);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes house-5-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.2);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.05);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes house-4-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.2);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.05);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes house-3-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.2);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.05);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes facade-6-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.95, 1.05);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.98, 1.02);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes facade-5-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.05);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.02);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes facade-4-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.05);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.02);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes facade-3-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: scale(0.9, 1.05);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: scale(0.95, 1.02);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes chimney-6-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: rotate(10deg) translateY(-15rpx);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: rotate(-5deg) translateY(-5rpx);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes chimney-5-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: rotate(-10deg) translateY(-15rpx);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: rotate(5deg) translateY(-5rpx);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes chimney-4-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: rotate(10deg) translateY(-15rpx);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: rotate(-5deg) translateY(-5rpx);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+@keyframes chimney-3-move {
+  from {
+    transform-origin: bottom center;
+  }
+  25% {
+    transform: rotate(-10deg) translateY(-15rpx);
+  }
+  50% {
+    transform-origin: bottom center;
+    transform: none;
+  }
+  51% {
+    transform-origin: bottom center;
+  }
+  75% {
+    transform-origin: bottom center;
+    transform: rotate(5deg) translateY(-5rpx);
+  }
+  to {
+    transform-origin: bottom center;
+    transform: none;
+  }
+}
+
+[data-rooms='6'] .house-wings > .house-roof {
+  animation: wing-roof-6-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='6'] .house-front > .house-gable {
+  animation: front-roof-6-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='6'] .house-wings:before,
+[data-rooms='6'] .house-left-wing,
+[data-rooms='6'] .house-right-wing {
+  animation: house-6-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='6'] .house-facade,
+[data-rooms='6'] .house-front .house-window,
+[data-rooms='6'] .house-doorway {
+  animation: facade-6-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='6'] .house-chimney {
+  animation: chimney-6-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='5'] .house-wings > .house-roof {
+  animation: wing-roof-5-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='5'] .house-front > .house-gable {
+  animation: front-roof-5-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='5'] .house-wings:before,
+[data-rooms='5'] .house-left-wing,
+[data-rooms='5'] .house-right-wing {
+  animation: house-5-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='5'] .house-facade,
+[data-rooms='5'] .house-front .house-window,
+[data-rooms='5'] .house-doorway {
+  animation: facade-5-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='5'] .house-chimney {
+  animation: chimney-5-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='4'] .house-wings > .house-roof {
+  animation: wing-roof-4-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='4'] .house-front > .house-gable {
+  animation: front-roof-4-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='4'] .house-wings:before,
+[data-rooms='4'] .house-left-wing,
+[data-rooms='4'] .house-right-wing {
+  animation: house-4-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='4'] .house-facade,
+[data-rooms='4'] .house-front .house-window,
+[data-rooms='4'] .house-doorway {
+  animation: facade-4-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='4'] .house-chimney {
+  animation: chimney-4-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='3'] .house-wings > .house-roof {
+  animation: wing-roof-3-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='3'] .house-front > .house-gable {
+  animation: front-roof-3-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='3'] .house-wings:before,
+[data-rooms='3'] .house-left-wing,
+[data-rooms='3'] .house-right-wing {
+  animation: house-3-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='3'] .house-facade,
+[data-rooms='3'] .house-front .house-window,
+[data-rooms='3'] .house-doorway {
+  animation: facade-3-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+[data-rooms='3'] .house-chimney {
+  animation: chimney-3-move 500ms 70ms cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.house-front {
+  position: absolute;
+  bottom: 0;
+  height: 160rpx;
+}
+
+.house-front > .house-window {
+  width: 60rpx;
+  height: 55rpx;
+  position: absolute;
+  left: calc(50% - 30rpx);
+  top: -10rpx;
+}
+
+[data-rooms='4'] .house-front > .house-window,
+[data-rooms='3'] .house-front > .house-window {
+  border-bottom-left-radius: 50% 40%;
+  border-bottom-right-radius: 50% 40%;
+}
+
+[data-rooms='4'] .house-front > .house-window:after,
+[data-rooms='3'] .house-front > .house-window:after {
+  display: none;
+}
+
+[data-rooms='4']:not([data-prev-rooms='3'])
+  .house-front
+  > .house-window
+  > .house-sparkle,
+[data-rooms='3']:not([data-prev-rooms='4'])
+  .house-front
+  > .house-window
+  > .house-sparkle,
+[data-rooms='5']:not([data-prev-rooms='6'])
+  .house-front
+  > .house-window
+  > .house-sparkle,
+[data-rooms='6']:not([data-prev-rooms='5'])
+  .house-front
+  > .house-window
+  > .house-sparkle {
+  display: block;
+}
+
+.house-front > .house-window > .house-sparkle {
+  display: none;
+}
+
+.house-front .house-ledge {
+  height: 20rpx;
+  width: 20rpx;
+  position: absolute;
+  background: #000;
+  left: calc(50% - 10rpx);
+  background-color: #79aaff;
+  border: 5rpx solid #224889;
+  transform: rotate(-45deg) translate(5rpx, -5rpx);
+}
+
+.house-front .house-ledge:before,
+.house-front .house-ledge:after {
+  position: absolute;
+  width: calc(var(--front-width) / 1.25);
+  height: calc(100% + 10rpx);
+  top: -5rpx;
+  background-color: #79aaff;
+  border: 5rpx solid #224889;
+}
+
+.house-front .house-ledge:before {
+  right: 100%;
+  border-right: none;
+}
+
+.house-front .house-ledge:after {
+  left: 0;
+  transform-origin: left bottom;
+  transform: rotate(90deg) translate(-5rpx, 5rpx);
+  border-left: none;
+}
+
+.house-gable {
+  position: absolute;
+  bottom: calc(100% - 5rpx);
+  left: 0;
+  width: 100%;
+  height: 70rpx;
+}
+
+.house-gable > .house-roof {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(0.8);
+  z-index: 1;
+}
+
+.house-chimney {
+  width: 35rpx;
+  height: 70rpx;
+  position: absolute;
+  background-color: #224889;
+  left: 15rpx;
+  bottom: 100%;
+  z-index: 0;
+}
+
+.house-left-wing,
+.house-right-wing {
+  position: absolute;
+  height: 100%;
+  width: calc(50% - var(--front-width) / 2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.house:not([data-rooms='6']) .house-wings .house-window:first-child {
+  display: none;
+}
+
+.house[data-rooms='3'] .house-wings .house-window {
+  display: none;
+}
+
+.house[data-rooms='6'] .house-wings .house-sparkle,
+.house[data-rooms='5']:not([data-prev-rooms='4']) .house-wings .house-sparkle,
+.house[data-rooms='4'][data-prev-rooms='3'] .house-wings .house-sparkle,
+.house[data-rooms='3'] .house-wings .house-sparkle {
+  display: block;
+}
+
+.house-left-wing {
+  left: 0;
+}
+
+.house-right-wing {
+  right: 0;
+  flex-flow: row-reverse;
+}
+
+.house-sparkle {
+  position: absolute;
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50%;
+  border: 5rpx solid #224889;
+  top: calc(50% - 45rpx);
+  left: calc(50% - 45rpx);
+  display: none;
+}
+
+.house-sparkle:before {
+  top: 0;
+  left: 0;
+  background-color: #65ebff;
+}
+
+.house-sparkle:after {
+  bottom: 0;
+  right: 0;
+  background-color: #224889;
+}
+
+.house-sparkle:before,
+.house-sparkle:after,
+.house-sparkle-dots:before,
+.house-sparkle-dots:after {
+  position: absolute;
+  height: 10rpx;
+  width: 10rpx;
+  border-radius: 50%;
+}
+
+.house-sparkle-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.house-sparkle-dots:before {
+  bottom: -15rpx;
+  right: 40rpx;
+  background-color: #a6cfff;
+}
+
+.house[data-rooms='6'] .house-left-wing .house-sparkle {
+  left: calc(25% - 45rpx);
+}
+
+.house[data-rooms='6'] .house-right-wing .house-sparkle {
+  left: initial;
+  right: calc(25% - 45rpx);
+}
+
+@keyframes sparkle-6 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+    border-width: 0;
+  }
+}
+
+@keyframes sparkle-dots-6 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.house[data-rooms='6'] .house-sparkle {
+  animation: sparkle-6 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house[data-rooms='6'] .house-sparkle:before,
+.house[data-rooms='6'] .house-sparkle:after,
+.house[data-rooms='6'] .house-sparkle-dots:before,
+.house[data-rooms='6'] .house-sparkle-dots:after {
+  animation: sparkle-dots-6 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes sparkle-5 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+    border-width: 0;
+  }
+}
+
+@keyframes sparkle-dots-5 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.house[data-rooms='5'] .house-sparkle {
+  animation: sparkle-5 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house[data-rooms='5'] .house-sparkle:before,
+.house[data-rooms='5'] .house-sparkle:after,
+.house[data-rooms='5'] .house-sparkle-dots:before,
+.house[data-rooms='5'] .house-sparkle-dots:after {
+  animation: sparkle-dots-5 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes sparkle-4 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+    border-width: 0;
+  }
+}
+
+@keyframes sparkle-dots-4 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.house[data-rooms='4'] .house-sparkle {
+  animation: sparkle-4 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house[data-rooms='4'] .house-sparkle:before,
+.house[data-rooms='4'] .house-sparkle:after,
+.house[data-rooms='4'] .house-sparkle-dots:before,
+.house[data-rooms='4'] .house-sparkle-dots:after {
+  animation: sparkle-dots-4 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes sparkle-3 {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+    border-width: 0;
+  }
+}
+
+@keyframes sparkle-dots-3 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.house[data-rooms='3'] .house-sparkle {
+  animation: sparkle-3 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+.house[data-rooms='3'] .house-sparkle:before,
+.house[data-rooms='3'] .house-sparkle:after,
+.house[data-rooms='3'] .house-sparkle-dots:before,
+.house[data-rooms='3'] .house-sparkle-dots:after {
+  animation: sparkle-dots-3 500ms cubic-bezier(0.1, 0, 0.3, 1) both;
+}
+
+@keyframes windows-leave {
+  to {
+    width: 0;
+  }
+}
+
+.house-window {
+  height: 60rpx;
+  width: 30rpx;
+  border: 5rpx solid #224889;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  background-image: linear-gradient(
+    to right,
+    #65ebff,
+    #65ebff 49.9%,
+    #71fbff 50%,
+    #71fbff
+  );
+}
+.house-window:before {
+  height: 100%;
+  width: 5rpx;
+  left: calc(50% - 2.5rpx);
+  top: 0;
+  background-color: #224889;
+}
+.house-window:after {
+  height: 15rpx;
+  width: calc(100% + 20rpx);
+  left: -10rpx;
+  bottom: 5rpx;
+  border-radius: 15rpx;
+  background-color: #79aaff;
+  border: 5rpx solid #224889;
+  box-shadow: 0 5rpx #e1eaff;
+}
+.house-doorway {
+  width: 65rpx;
+  height: 90rpx;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 65rpx / 2);
+}
+.house-stairs {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 15rpx;
+  border: 5rpx solid #224889;
+  z-index: 0;
+  box-shadow: 5rpx -5rpx #e1eaff;
+}
+.house-stairs,
+.house-stairs:before,
+.house-stairs:after {
+  background-color: white;
+}
+.house-stairs:before,
+.house-stairs:after {
+  box-shadow: 5rpx -5rpx #e1eaff;
+  position: absolute;
+  height: 15rpx;
+  width: 100%;
+  border: 5rpx solid #224889;
+}
+.house-stairs:before {
+  bottom: 100%;
+  transform: scaleX(0.9);
+  z-index: 0;
+}
+.house-stairs:after {
+  bottom: calc(200% + 5rpx);
+  transform: scaleX(0.75);
+  z-index: 0;
+}
+
+.house-door {
+  position: absolute;
+  background-color: #224889;
+  width: 50%;
+  height: 55rpx;
+  left: 25%;
+  bottom: 35rpx;
+  border-top-left-radius: 2rpx;
+  border-top-right-radius: 2rpx;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+}
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+view,
+view::before,
+view::after {
+  box-sizing: border-box;
+  position: relative;
+}
+view::before,
+view::after {
+  content: '';
+  display: block;
+}
+[type='range'] {
+  -webkit-appearance: none;
+  margin: 20rpx 0;
+  width: 330rpx;
+}
+
+[type='range']:focus {
+  outline: 0;
+}
+[type='range']:focus::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+}
+[type='range']:focus::-ms-fill-lower {
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+}
+[type='range']:focus::-ms-fill-upper {
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+}
+[type='range']::-webkit-slider-runnable-track {
+  cursor: pointer;
+  height: 25rpx;
+  transition: all 0.2s ease;
+  width: 330rpx;
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+  border: 5rpx solid #224889;
+  border-radius: 25rpx;
+}
+[type='range']::-webkit-slider-thumb {
+  background: #224889;
+  border-radius: 20rpx;
+  cursor: pointer;
+  height: 40rpx;
+  width: 40rpx;
+  -webkit-appearance: none;
+  margin-top: -12.5rpx;
+}
+[type='range']::-moz-range-track {
+  cursor: pointer;
+  height: 25rpx;
+  transition: all 0.2s ease;
+  width: 330rpx;
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+  border: 5rpx solid #224889;
+  border-radius: 25rpx;
+}
+[type='range']::-moz-range-thumb {
+  background: #224889;
+  border-radius: 20rpx;
+  cursor: pointer;
+  height: 40rpx;
+  width: 40rpx;
+}
+[type='range']::-ms-track {
+  cursor: pointer;
+  height: 25rpx;
+  transition: all 0.2s ease;
+  width: 330rpx;
+  background: transparent;
+  border-color: transparent;
+  border-width: 20rpx 0;
+  color: transparent;
+}
+[type='range']::-ms-fill-lower {
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+  border: 5rpx solid #224889;
+  border-radius: 50rpx;
+}
+[type='range']::-ms-fill-upper {
+  background: linear-gradient(
+    to bottom,
+    #79aaff,
+    #79aaff 49.9%,
+    #609aff 50%,
+    #609aff 100%
+  );
+  border: 5rpx solid #224889;
+  border-radius: 50rpx;
+}
+[type='range']::-ms-thumb {
+  background: #224889;
+  border-radius: 20rpx;
+  cursor: pointer;
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 0;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.sun {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: yellow;
+  top: 100%;
+  right: 0%;
+  -webkit-animation: day13 40s linear infinite;
+  -moz-animation: day1 40s linear infinite;
+  -o-animation: day1 40s linear infinite;
+  -ms-animation: day1 40s linear infinite;
+  transition: day1 40s linear infinite;
+}
+@keyframes day13 {
+  0% {
+    top: 100%;
+    right: 0%;
+  }
+
+  12% {
+    top: 20%;
+    right: 25%;
+  }
+
+  25% {
+    top: 0%;
+    right: 50%;
+  }
+
+  33% {
+    top: 20%;
+    right: 75%;
+  }
+
+  50% {
+    top: 100%;
+    right: 100%;
+    opacity: 1;
+  }
+}
+
+.moon {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #fff;
+  top: 100%;
+  right: 0%;
+  -webkit-animation: day21 40s linear infinite;
+  -moz-animation: day21 40s linear infinite;
+  -o-animation: day21 40s linear infinite;
+  -ms-animation: day21 40s linear infinite;
+  transition: day21 40s linear infinite;
+}
+@keyframes day21 {
+  50% {
+    top: 100%;
+    right: 0%;
+  }
+  62% {
+    top: 20%;
+    right: 25%;
+  }
+
+  75% {
+    top: 0%;
+    right: 50%;
+  }
+
+  83% {
+    top: 20%;
+    right: 75%;
+  }
+
+  100% {
+    top: 100%;
+    right: 100%;
+    opacity: 1;
+  }
+}
+.sky {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 65vh;
+  background: #e0f1f9;
+  -webkit-animation: day 40s linear infinite;
+  -moz-animation: day 40s linear infinite;
+  -o-animation: day 40s linear infinite;
+  -ms-animation: day 40s linear infinite;
+  transition: day 40s linear infinite;
+}
+@keyframes day {
+  0% {
+    background: #e0f1f9;
+  }
+
+  25% {
+    background: #e4ebde;
+  }
+
+  35% {
+    background: #f6d895;
+  }
+
+  55% {
+    background: #012362;
+  }
+
+  80% {
+    background: #000;
+  }
+
+  100% {
+    background: #e0f1f9;
+  }
+}
+
+.sea {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 35vh;
+  background: #2a71d7;
+  -webkit-animation: color 40s linear infinite;
+  -moz-animation: color 40s linear infinite;
+  -o-animation: color 40s linear infinite;
+  -ms-animation: color 40s linear infinite;
+  transition: color 40s linear infinite;
+}
+
+@keyframes color {
+  0% {
+    background: #2a71d7;
+  }
+
+  80% {
+    background: #0c2447;
+  }
+
+  100% {
+    background: #2a71d7;
+  }
+}
+.house-position {
+  position: absolute;
+  top: -220rpx;
+  left: 150rpx;
+  z-index: 3;
+}
+
+.island {
+  background: #ccff99;
+  width: 750rpx;
+  height: 230rpx;
+  position: absolute;
+  top: -100rpx;
+  border-radius: 50% 50% 5rpx 5rpx;
+  z-index: 2;
+}
+.island:before {
+  position: absolute;
+  content: '';
+  background: url('https://xcx.zhenghaodichan.com:9000/test/tree2.png') 0rpx 0rpx
+    no-repeat;
+  width: 316rpx;
+  height: 342rpx;
+  top: -180rpx;
+  right: -40rpx;
+  background-size: 125%;
+}
+.island:after {
+  position: absolute;
+  content: '';
+  background: url('https://xcx.zhenghaodichan.com:9000/test/tree2.png') 0rpx 0rpx
+    no-repeat;
+  width: 316rpx;
+  height: 342rpx;
+  top: -130rpx;
+  right: 450rpx;
+  background-size: 100%;
+}
+
+@keyframes animate {
+  0% {
+    margin-left: -500rpx;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+
+@keyframes boat-move {
+  0% {
+    margin-left: 720rpx;
+  }
+  100% {
+    margin-left: -300rpx;
+  }
+}
+.boat {
+  top: 300rpx;
+  left: 0rpx;
+  margin-top: -85rpx;
+  position: absolute;
+  margin-left: -105rpx;
+  animation: boat-move 20s ease-in-out infinite;
+}
+.boat .wrap {
+  margin: auto;
+  width: 210rpx;
+  height: 150rpx;
+  overflow: hidden;
+  position: relative;
+  padding: 50rpx 0 0 25rpx;
+}
+.boat .main {
+  bottom: -3rpx;
+  position: relative;
+  -webkit-animation: boat-start 1s infinite;
+  animation: boat-start 1s infinite;
+}
+.boat .boat-top-layer .top:before,
+.boat .boat-top-layer .top:after,
+.boat .boat-top-layer .top .pole:before,
+.boat .boat-top-layer .top .pole:after,
+.boat .boat-top-layer .top .help:before,
+.boat .boat-top-layer .top .help:after,
+.boat .boat-top-layer .top .help span:before,
+.boat .boat-top-layer .top .help span:after,
+.boat .boat-top-layer .bottom:before,
+.boat .boat-top-layer .bottom:after,
+.boat .boat-mid-layer .top:before,
+.boat .boat-mid-layer .top:after,
+.boat .boat-mid-layer .bottom:before,
+.boat .boat-mid-layer .bottom:after,
+.boat .boat-bot-layer .top:before,
+.boat .boat-bot-layer .top:after,
+.boat .boat-bot-layer .bottom:before,
+.boat .boat-bot-layer .bottom:after,
+.boat .water .drop:before,
+.boat .water .drop:after {
+  content: '';
+  position: absolute;
+}
+.boat .boat-top-layer .top {
+  left: 70rpx;
+  width: 55rpx;
+  height: 30rpx;
+  position: relative;
+  border: 2rpx solid #fff;
+}
+.boat .boat-top-layer .top:before,
+.boat .boat-top-layer .top:after {
+  background: #fff;
+}
+.boat .boat-top-layer .top:before {
+  top: 50%;
+  left: -2rpx;
+  height: 2rpx;
+  width: inherit;
+  margin-top: -1rpx;
+}
+.boat .boat-top-layer .top:after {
+  top: -30rpx;
+  width: 2rpx;
+  right: -2rpx;
+  height: 35rpx;
+}
+.boat .boat-top-layer .top .pole {
+  width: 2rpx;
+  left: -2rpx;
+  z-index: 1;
+  height: 50rpx;
+  bottom: -8rpx;
+  background: #fff;
+  position: absolute;
+}
+.boat .boat-top-layer .top .pole:before,
+.boat .boat-top-layer .top .pole:after {
+  position: absolute;
+  background: inherit;
+}
+.boat .boat-top-layer .top .pole:before {
+  top: -5rpx;
+  left: 50%;
+  width: 15rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  margin-left: -7.5rpx;
+}
+.boat .boat-top-layer .top .pole:after {
+  bottom: 0;
+  left: 30rpx;
+  width: 2rpx;
+  height: 35rpx;
+}
+.boat .boat-top-layer .top .help {
+  z-index: 1;
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: -2rpx;
+  margin-left: -1rpx;
+  position: relative;
+  border-radius: 50%;
+  border: 8rpx solid #f04850;
+}
+.boat .boat-top-layer .top .help:before,
+.boat .boat-top-layer .top .help:after {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+}
+.boat .boat-top-layer .top .help:before {
+  height: 2rpx;
+  width: inherit;
+  margin-top: -1rpx;
+  margin-left: -15rpx;
+}
+.boat .boat-top-layer .top .help:after {
+  width: 2rpx;
+  height: inherit;
+  margin-top: -15rpx;
+  margin-left: -1rpx;
+}
+.boat .boat-top-layer .top .help span {
+  top: -2rpx;
+  width: 14rpx;
+  height: 14rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+.boat .boat-top-layer .top .help span:before,
+.boat .boat-top-layer .top .help span:after {
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  background: #fff;
+  position: absolute;
+}
+.boat .boat-top-layer .top .help span:before {
+  width: 2rpx;
+  height: inherit;
+  margin-top: -7rpx;
+  margin-left: -1rpx;
+}
+.boat .boat-top-layer .top .help span:after {
+  height: 2rpx;
+  width: inherit;
+  margin-top: -1rpx;
+  margin-left: -7rpx;
+}
+.boat .boat-top-layer .bottom {
+  left: 55rpx;
+  height: 5rpx;
+  width: 75rpx;
+  position: relative;
+  background: #688b77;
+  border-radius: 5rpx 3rpx 0 0;
+}
+.boat .boat-top-layer .bottom:before,
+.boat .boat-top-layer .bottom:after {
+  background: #fff;
+}
+.boat .boat-top-layer .bottom:before {
+  left: 8rpx;
+  top: -30rpx;
+  width: 5rpx;
+  height: 35rpx;
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.boat .boat-top-layer .bottom:after {
+  bottom: 0;
+  left: 30rpx;
+  width: 2rpx;
+  height: 85rpx;
+}
+.boat .boat-mid-layer .top {
+  left: 60rpx;
+  width: 70rpx;
+  height: 20rpx;
+  position: relative;
+  background: #222e28;
+  border-top: 5rpx solid #fff;
+  border-right: 5rpx solid #fff;
+}
+.boat .boat-mid-layer .top:before {
+  top: -5rpx;
+  left: -10rpx;
+  width: 18rpx;
+  height: inherit;
+  background: inherit;
+  border-top: inherit;
+  border-right: inherit;
+  border-left: 5rpx solid #fff;
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.boat .boat-mid-layer .top:after {
+  top: -5rpx;
+  width: 5rpx;
+  height: 5rpx;
+  right: -10rpx;
+  background: #fff;
+  border-radius: 0 3rpx 3rpx 0;
+}
+.boat .boat-mid-layer .bottom {
+  left: 25rpx;
+  width: 105rpx;
+  height: 12rpx;
+  background: #fff;
+  position: relative;
+}
+.boat .boat-mid-layer .bottom:before {
+  left: -5rpx;
+  width: 10rpx;
+  height: inherit;
+  background: inherit;
+  border-radius: 3rpx 0 0 0;
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.boat .boat-mid-layer .bottom:after {
+  top: 3rpx;
+  right: 5rpx;
+  height: 5rpx;
+  width: 20rpx;
+  background: #d0e2d7;
+}
+.boat .boat-bot-layer .top {
+  left: -10rpx;
+  height: 5rpx;
+  width: 180rpx;
+  position: relative;
+  background: #688b77;
+  border-radius: 5rpx 5rpx 0 0;
+}
+.boat .boat-bot-layer .top:before,
+.boat .boat-bot-layer .top:after {
+  width: 5rpx;
+  height: 5rpx;
+  bottom: 100%;
+  background: #222e28;
+  border-radius: 2rpx 2rpx 0 0;
+}
+.boat .boat-bot-layer .top:before {
+  left: 10rpx;
+}
+.boat .boat-bot-layer .top:after {
+  right: 25rpx;
+}
+.boat .boat-bot-layer .bottom {
+  width: 180rpx;
+  height: 25rpx;
+  position: relative;
+  border-radius: 2rpx;
+  background: #222e28;
+}
+.boat .boat-bot-layer .bottom:before {
+  left: -15rpx;
+  width: 25rpx;
+  height: 25rpx;
+  background: inherit;
+  border-radius: inherit;
+  -webkit-transform: skewX(25deg);
+  transform: skewX(25deg);
+}
+.boat .boat-bot-layer .bottom:after {
+  top: -13rpx;
+  left: 28rpx;
+  width: 5rpx;
+  height: 5rpx;
+  border-radius: 50%;
+  background: inherit;
+}
+.boat .water {
+  bottom: 0;
+  left: 150rpx;
+  position: absolute;
+}
+.boat .water .drops {
+  width: 300rpx;
+  height: 22rpx;
+  position: relative;
+}
+.boat .water .drop {
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  position: absolute;
+}
+.boat .water .drop:before,
+.boat .water .drop:after {
+  background: inherit;
+  border-radius: inherit;
+}
+.boat .water .drop.drop-a,
+.boat .water .drop.drop-b,
+.boat .water .drop.drop-e,
+.boat .water .drop.drop-f,
+.boat .water .drop.drop-g {
+  height: 5rpx;
+  border-radius: 3rpx 3rpx 0 0;
+}
+.boat .water .drop.drop-a {
+  width: 10rpx;
+}
+.boat .water .drop.drop-b,
+.boat .water .drop.drop-e,
+.boat .water .drop.drop-f,
+.boat .water .drop.drop-g {
+  left: 15rpx;
+  width: 22rpx;
+}
+.boat .water .drop.drop-c {
+  left: 37rpx;
+  width: 32rpx;
+  height: 7rpx;
+  border-radius: 6rpx 6rpx 0 0;
+}
+.boat .water .drop.drop-c:before,
+.boat .water .drop.drop-c:after,
+.boat .water .drop.drop-d:before,
+.boat .water .drop.drop-d:after,
+.boat .water .drop.drop-g:before {
+  width: 2rpx;
+  height: 2rpx;
+  border-radius: 50%;
+}
+.boat .water .drop.drop-c:before {
+  left: 0;
+  top: -5rpx;
+}
+.boat .water .drop.drop-c:after {
+  top: -8rpx;
+  right: 5rpx;
+  width: 4rpx;
+  height: 4rpx;
+}
+.boat .water .drop.drop-d {
+  left: 68rpx;
+  width: 25rpx;
+  height: 10rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+.boat .water .drop.drop-d:before {
+  top: -8rpx;
+  left: 8rpx;
+}
+.boat .water .drop.drop-d:after {
+  top: -2rpx;
+  right: -8rpx;
+}
+.boat .water .drop.drop-e {
+  left: 93rpx;
+}
+.boat .water .drop.drop-f {
+  width: 50rpx;
+  left: 115rpx;
+  height: 4rpx;
+}
+.boat .water .drop.drop-g {
+  left: auto;
+  right: 75rpx;
+  width: 40rpx;
+  height: 2.5rpx;
+}
+.boat .water .drop.drop-g:before {
+  top: -5rpx;
+  left: -5rpx;
+}
+.boat .water .drop.drop-g:after {
+  left: 100%;
+  width: 12rpx;
+  height: inherit;
+}
+.boat .water .drop.drop-h {
+  left: auto;
+  right: 25rpx;
+  height: 2rpx;
+  width: 25rpx;
+}
+.boat .water .drop.drop-h:before,
+.boat .water .drop.drop-h:after {
+  height: inherit;
+}
+.boat .water .drop.drop-h:before {
+  left: 30rpx;
+  width: 10rpx;
+}
+.boat .water .drop.drop-h:after {
+  left: 45rpx;
+  width: 4rpx;
+}
+.boat .water .drops-2 {
+  bottom: 0;
+  left: 30rpx;
+  position: absolute;
+}
+.boat .water .drops-2 .drop.drop-a {
+  width: 15rpx;
+  border-radius: 5rpx 5rpx 0 0;
+}
+.boat .water .drops-2 .drop.drop-b {
+  height: 10rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+.boat .water .drops-2 .drop.drop-c:before {
+  left: 10rpx;
+  top: -10rpx;
+}
+.boat .water .drops-2 .drop.drop-c:after {
+  top: -12rpx;
+  right: -25rpx;
+}
+.boat .water .drops-2 .drop.drop-d {
+  height: 8rpx;
+}
+.boat .water .drops-2 .drop.drop-d:before {
+  top: -15rpx;
+  left: 35rpx;
+}
+.boat .water .drops-2 .drop.drop-d:after {
+  top: -8rpx;
+  right: -55rpx;
+}
+.boat .water .drops-2 .drop.drop-g:before {
+  right: 0;
+  top: -10rpx;
+  left: auto;
+}
+.boat .water .drops-2 .drop.drop-h {
+  bottom: 0;
+  width: 10rpx;
+  left: auto;
+  height: 5rpx;
+  right: 45rpx;
+  border-radius: 5rpx 5rpx 0 0;
+}
+.boat .water .drops-2 .drop.drop-h:before,
+.boat .water .drops-2 .drop.drop-h:after {
+  display: none;
+}
+.drops-1 {
+  -webkit-animation: blink 0.8s linear infinite;
+  animation: blink 0.8s linear infinite;
+}
+.drops-2 {
+  -webkit-animation: blink 1.6s linear infinite;
+  animation: blink 1.6s linear infinite;
+}
+
+@keyframes boat-start {
+  0% {
+    -webkit-transform: none;
+    transform: none;
+  }
+  50% {
+    -webkit-transform: translateY(4rpx);
+    transform: translateY(4rpx);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes boat-start {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(4rpx);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes blink {
+  25% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes blink {
+  25% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+view,
+:after,
+:before {
+  box-sizing: border-box;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.clearfix:after,
+.clearfix:before {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+  display: block;
+}
+#background-wrap {
+  bottom: 0;
+  left: 0;
+  padding-top: 50rpx;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+@keyframes animateCloud {
+  0% {
+    margin-left: -1000rpx;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+
+@keyframes animateCloud {
+  0% {
+    margin-left: -1000rpx;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+
+@keyframes animateCloud {
+  0% {
+    margin-left: -1000rpx;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+.x1 {
+  -webkit-animation: animateCloud 35s linear infinite;
+  -moz-animation: animateCloud 35s linear infinite;
+  animation: animateCloud 35s linear infinite;
+  -webkit-transform: scale(0.65);
+  -moz-transform: scale(0.65);
+  transform: scale(0.65);
+}
+.x2 {
+  -webkit-animation: animateCloud 20s linear infinite;
+  -moz-animation: animateCloud 20s linear infinite;
+  animation: animateCloud 20s linear infinite;
+  -webkit-transform: scale(0.3);
+  -moz-transform: scale(0.3);
+  transform: scale(0.3);
+}
+.x3 {
+  -webkit-animation: animateCloud 30s linear infinite;
+  -moz-animation: animateCloud 30s linear infinite;
+  animation: animateCloud 30s linear infinite;
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  transform: scale(0.5);
+}
+.x4 {
+  -webkit-animation: animateCloud 18s linear infinite;
+  -moz-animation: animateCloud 18s linear infinite;
+  animation: animateCloud 18s linear infinite;
+  -webkit-transform: scale(0.4);
+  -moz-transform: scale(0.4);
+  transform: scale(0.4);
+}
+.x5 {
+  -webkit-animation: animateCloud 25s linear infinite;
+  -moz-animation: animateCloud 25s linear infinite;
+  animation: animateCloud 25s linear infinite;
+  -webkit-transform: scale(0.55);
+  -moz-transform: scale(0.55);
+  transform: scale(0.55);
+}
+.cloud {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 5%, #f1f1f1 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(5%, #fff),
+    color-stop(100%, #f1f1f1)
+  );
+  background: -webkit-linear-gradient(top, #fff 5%, #f1f1f1 100%);
+  background: -o-linear-gradient(top, #fff 5%, #f1f1f1 100%);
+  background: -ms-linear-gradient(top, #fff 5%, #f1f1f1 100%);
+  background: linear-gradient(top, #fff 5%, #f1f1f1 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
+  -webkit-border-radius: 100rpx;
+  -moz-border-radius: 100rpx;
+  border-radius: 100rpx;
+  -webkit-box-shadow: 0 8rpx 5rpx rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 8rpx 5rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8rpx 5rpx rgba(0, 0, 0, 0.1);
+  height: 120rpx;
+  position: relative;
+  width: 350rpx;
+}
+.cloud:after,
+.cloud:before {
+  background: #fff;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+.cloud:after {
+  -webkit-border-radius: 100rpx;
+  -moz-border-radius: 100rpx;
+  border-radius: 100rpx;
+  height: 100rpx;
+  left: 50rpx;
+  top: -50rpx;
+  width: 100rpx;
+}
+.cloud:before {
+  -webkit-border-radius: 200rpx;
+  -moz-border-radius: 200rpx;
+  border-radius: 200rpx;
+  width: 180rpx;
+  height: 180rpx;
+  right: 50rpx;
+  top: -90rpx;
+}
+
+.hidx {
+  overflow-x: hidden;
+}
+
+.bg {
+  overflow: hidden;
+  /* background:#38845E; */
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.mountain,
+.mountain-two,
+.mountain-three {
+  position: absolute;
+  /* top: -100px; */
+  bottom: 0px;
+  border-left: 250px solid transparent;
+  border-right: 250px solid transparent;
+  border-bottom: 300px solid #93a4b4;
+  z-index: 1;
+}
+.mountain-two {
+  left: 80px;
+  bottom: -30px;
+  opacity: 0.6;
+  z-index: 0;
+}
+.mountain-three {
+  left: -200px;
+  bottom: -20px;
+  opacity: 0.7;
+  z-index: 0;
+}
+.mountain-top {
+  position: absolute;
+  /* top: -100px; */
+  right: -65px;
+  border-left: 65px solid transparent;
+  border-right: 65px solid transparent;
+  border-bottom: 77px solid #ceeaf6;
+  z-index: 2;
+}
+.mountain-cap-1,
+.mountain-cap-2,
+.mountain-cap-3 {
+  position: absolute;
+  top: 70px;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 25px solid #ceeaf6;
+}
+.mountain-cap-1 {
+  left: -55px;
+}
+.mountain-cap-2 {
+  left: -25px;
+}
+.mountain-cap-3 {
+  left: 5px;
+}
+
+.car {
+  animation-name: car;
+  /*left: 50rpx; */
+  position: absolute;
+  animation-duration: 5.8s;
+  animation-delay: 2s;
+  z-index: 5;
+  animation-iteration-count: infinite;
+  left: 500rpx;
+}
+.car .carimg {
+  width: 166rpx;
+  height: 50rpx;
+}
+
+</style>
+// 上面是 1633 行分割
+<template>
+  <div class="hidx">
+    <div class="sky">
+      <div class="bg">
+        <div class="mountain">
+          <div class="mountain-top">
+            <div class="mountain-cap-1"></div>
+            <div class="mountain-cap-2"></div>
+            <div class="mountain-cap-3"></div>
+          </div>
+        </div>
+        <div class="mountain-two">
+          <div class="mountain-top">
+            <div class="mountain-cap-1"></div>
+            <div class="mountain-cap-2"></div>
+            <div class="mountain-cap-3"></div>
+          </div>
+        </div>
+        <div class="mountain-three">
+          <div class="mountain-top">
+            <div class="mountain-cap-1"></div>
+            <div class="mountain-cap-2"></div>
+            <div class="mountain-cap-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sun"></div>
+      <div class="moon"></div>
+      <div id="background-wrap">
+        <div class="x1">
+          <div class="cloud"></div>
+        </div>
+
+        <div class="x2">
+          <div class="cloud"></div>
+        </div>
+
+        <div class="x3">
+          <div class="cloud"></div>
+        </div>
+
+        <div class="x4">
+          <div class="cloud"></div>
+        </div>
+
+        <div class="x5">
+          <div class="cloud"></div>
+        </div>
+      </div>
+    </div>
+    <div class="car">
+      <image
+        class="carimg"
+        src="https://clipartion.com/wp-content/uploads/2016/04/sports-car-clipart-830x252.png"
+      />
+    </div>
+    <div class="sea">
+      <div class="house-position">
+        <div class="house" id="house" data-rooms="{{ dataRooms }}">
+          <div class="house-wings" data-flip-key="wings">
+            <div class="house-left-wing">
+              <div class="house-window"></div>
+              <div class="house-window"></div>
+              <div class="house-sparkle">
+                <div class="house-sparkle-dots"></div>
+              </div>
+            </div>
+            <div class="house-right-wing">
+              <div class="house-window"></div>
+              <div class="house-window"></div>
+              <div class="house-sparkle">
+                <div class="house-sparkle-dots"></div>
+              </div>
+            </div>
+            <div class="house-roof">
+              <div class="house-ledge"></div>
+            </div>
+          </div>
+          <div class="house-front" data-flip-key="front">
+            <div class="house-chimney"></div>
+            <div class="house-facade"></div>
+            <div class="house-window">
+              <div class="house-sparkle">
+                <div class="house-sparkle-dots"></div>
+              </div>
+            </div>
+            <div class="house-doorway">
+              <div class="house-stairs"></div>
+              <div class="house-door"></div>
+            </div>
+            <div class="house-gable">
+              <div class="house-roof">
+                <div class="house-ledge"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="island"></div>
+      <div class="boat">
+        <div class="wrap">
+          <div class="main">
+            <div class="boat-top-layer">
+              <div class="top">
+                <div class="pole"></div>
+                <div class="help"><span></span></div>
+              </div>
+              <div class="bottom"></div>
+            </div>
+            <div class="boat-mid-layer">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="boat-bot-layer">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+          </div>
+        </div>
+        <div class="water">
+          <div class="drops clearfix drops-1">
+            <span class="drop drop-a"></span>
+            <span class="drop drop-b"></span>
+            <span class="drop drop-c"></span>
+            <span class="drop drop-d"></span>
+            <span class="drop drop-e"></span>
+            <span class="drop drop-f"></span>
+            <span class="drop drop-g"></span>
+            <span class="drop drop-h"></span>
+          </div>
+          <div class="drops clearfix drops-2">
+            <span class="drop drop-a"></span>
+            <span class="drop drop-b"></span>
+            <span class="drop drop-c"></span>
+            <span class="drop drop-d"></span>
+            <span class="drop drop-e"></span>
+            <span class="drop drop-f"></span>
+            <span class="drop drop-g"></span>
+            <span class="drop drop-h"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  properties: {
+    dataRooms: Number
+  }
+});
+</script>
+
+<config>
+{
+  "usingComponents": {
+    
+  }
+}
+</config>

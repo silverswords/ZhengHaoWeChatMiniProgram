@@ -1,0 +1,56 @@
+<style lang="less">
+.popover {
+  // margin-right: 700rpx;
+}
+</style>
+<template>
+  <div>
+    <wux-popover
+      :visible="popoverVisible"
+      controlled
+      placement="bottomRight"
+      title="扫码关注"
+      @change="onChange"
+      class="popover"
+    >
+      <view slot="content" @tap="hide">
+        <image
+          src="{{ qr }}"
+        >
+        </image>
+      </view>
+      <button size="mini">关注</button>
+    </wux-popover>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.component({
+  data: {
+    popoverVisible: false,
+    qr: ""
+  },
+
+  methods: {
+    onChange(e) {
+      this.qr = this.$app.$options.globalData.currentProject.QRCode;
+      this.popoverVisible = e.$wx.detail.visible;
+    },
+
+    hide() {
+      this.popoverVisible = false;
+    },
+  },
+})
+</script>
+
+<config>
+{
+  "component": true,
+  "usingComponents": {
+    "wux-popover": "../../components/es/popover/index",
+  }
+}
+</config>

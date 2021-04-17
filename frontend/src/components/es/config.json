@@ -1,0 +1,12 @@
+{
+    "components": [
+        "popover",
+        "popup",
+        "landscape",
+        "button",
+        "cell"
+    ],
+    "themes": {
+        "light": "white"
+    }
+}

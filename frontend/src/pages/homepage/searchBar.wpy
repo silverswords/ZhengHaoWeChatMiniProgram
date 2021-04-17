@@ -1,0 +1,170 @@
+<style lang="less">
+.searchBar {
+  margin-top: 10rpx;
+}
+
+.uni-picker-input {
+  display: flex;
+  flex-direction: space-between;
+  width: 90%;
+  height: 80rpx;
+  border-radius: 42rpx;
+  background: #fff9e9;
+  border: 2rpx solid#ffeba8;
+}
+
+.picker-item-input {
+  margin-left: 20rpx;
+  width: 100%;
+  height: 100%;
+  line-height: 60rpx;
+  font-size: 34rpx;
+}
+
+.uni-picker-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  margin-top: 15rpx;
+}
+</style>
+
+<template>
+  <div class="searchBar">
+    <view class="uni-picker-input">
+      <input
+        value="{{ inputValue }}"
+        class="picker-item-input"
+        bindinput="bindkeyinput"
+        disabled="true"
+      />
+      <picker
+        style="width:25%; height:100%;"
+        bindchange="bindchange"
+        value="{{ slist[index][actualValue] }}"
+        range-key="{{ showValue }}"
+        range="{{ slist }}"
+      >
+        <view class="uni-picker-icon">
+          <image src="../../assets/arrow.png" class="img" />
+        </view>
+      </picker>
+    </view>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+wepy.component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    list: {
+      //下拉框数据来源
+      type: [Array, Object],
+      value: [],
+      observer: function(newVal, oldVal) {
+        this.setData({
+          list: newVal,
+          slist: newVal
+        });
+      },
+      description: '数据源'
+    },
+    actualValue: {
+      //实际值
+      type: String
+    },
+    showValue: {
+      //显示值
+      type: String
+    },
+    inputValue: {
+      type: String
+    }
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+    index: 0, //下拉框下标
+    slist: [] //下拉框数据
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    //文本框输入事件
+    // bindkeyinput(e) {
+    //   const value = e.$wx.detail.value;
+    //   const show = this.showValue;
+    //   const alist = JSON.parse(JSON.stringify(this.$wx.data.list));
+    //   const array = alist
+    //     .filter(item => item[show].indexOf(value) != -1)
+    //     .map(item => {
+    //       const result = JSON.parse(JSON.stringify(item));
+    //       return result;
+    //     });
+    //   this.slist = array;
+    //   var gData = this.$app.$options.globalData;
+    //   (value, array) => {
+    //     for(let i = 0; i < array.length; i++) {
+    //       if (value === array[i].ProjectName) {
+    //         gData.currentProject = array[i]
+    //       }
+    //     }
+    //   }
+    // },
+
+    
+
+    //下拉框选择事件
+    bindchange(e) {
+      var gData = this.$app.$options.globalData;
+      const idx = e.$wx.detail.value;
+      const show = this.showValue;
+      this.index = idx;
+      this.slist = this.$wx.list;
+      var short = this.$wx.data.slist[idx];
+      console.log(e, this, this.slist, short, 'this.slist and short');
+      this.inputValue = short[show];
+      gData.currentProject = short;
+      var that = this;
+      wx.request({
+        url: 'https://xcx.zhenghaodichan.com/api/v1/integration/points',
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+        data: {
+          projectId: parseInt(gData.currentProject.ProjectID),
+          userId: gData.userid
+        },
+        success(res) {
+          gData.userPoints = res.data.points;
+        }
+      });
+    }
+  }
+});
+</script>
+
+<config>
+{
+  "component": true,
+  "usingComponents": {
+    
+  }
+}
+</config>

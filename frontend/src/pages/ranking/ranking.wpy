@@ -1,0 +1,66 @@
+<style lang="less">
+.weather-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.cell-group {
+  width: 82%;
+  // margin-top: 30rpx;
+  margin-left: 9vw;
+  margin-top:10vw
+}
+</style>
+
+<template>
+  <div class="cell-group">
+    <wux-cell-group wx:for="{{ rankings }}">
+      <wux-cell
+        id="{{ item.id }}"
+        ranking="{{ item.Number }}"
+        thumb="{{ item.Path }}"
+        title="{{ item.UserName }}"
+        extra="{{ item.Points }}"
+      ></wux-cell>
+    </wux-cell-group>
+    <image class="weather-bg" src="/static/rankback.jpg"></image>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  data: {
+    rankings: []
+  },
+
+  onLoad() {
+    let that = this;
+    wx.request({
+      url: 'https://xcx.zhenghaodichan.com/api/v1/integration/rankings',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success(res) {
+        that.rankings = res.data.rankings;
+      }
+    });
+  }
+});
+</script>
+
+<config>
+{
+  "navigationBarTitleText": "排行榜",
+  "usingComponents": {
+    "wux-cell-group": "../../components/es/cell-group/index",
+    "wux-cell": "../../components/es/cell/index"
+  }
+}
+</config>

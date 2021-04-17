@@ -1,0 +1,541 @@
+<style lang="less">
+.userinfo-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: rgb(41, 41, 41);
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.font-style {
+  font-size: 28rpx;
+  color: rgb(41, 41, 41);
+}
+
+progress {
+  width: 350rpx;
+}
+
+.show {
+  position: absolute;
+  z-index: 3;
+  height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: space-between;
+  // box-sizing: border-box;
+}
+
+.wrp {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.img-button {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.item {
+  background-color: #be0303;
+  font-size: 28rpx;
+}
+
+.img {
+  width: 12vw;
+  height: 12vw;
+}
+
+.img-button-font {
+  margin-top: -6vw;
+  color: #dd8c13;
+  font-size: 28rpx;
+}
+
+.img-button-item {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.img-button-item::after {
+  border: none;
+}
+
+.background {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.animation {
+  position: absolute;
+  z-index: 2;
+}
+
+.searchBar {
+  // width: 480rpx;
+  display: table;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.popup__button {
+  display: block;
+  flex: 1;
+  color: #65ebff;
+  position: relative;
+}
+
+.authorize__button {
+  color: #65ebff;
+  background-color: white;
+}
+</style>
+<template>
+  <div class="background">
+    <wux-popup
+      closable
+      visible="{{ authorizeVisible }}"
+      title="授权"
+      content="是否同意获取个人信息？"
+      bind:close="onAuthorizeClose"
+    >
+      <view slot="footer" class="popup__button">
+        <button
+          class="authorize__button"
+          open-type="getUserInfo"
+          bindtap="authorize"
+          bindgetuserinfo="userInfoCallback"
+        >
+          同意授权
+        </button>
+      </view>
+    </wux-popup>
+    <wux-popup
+      closable
+      visible="{{ popupVisible }}"
+      title="助力"
+      content="是否助力该好友？"
+      bind:close="onPopupClose"
+    >
+      <view slot="footer" class="popup__button" bindtap="settle">助力该人</view>
+    </wux-popup>
+    <wux-landscape visible="{{ landscapeVisible }}" @tap="onClose">
+      <image src="http://cdn.skyvow.cn/redpacket.png" style="height: 350px" />
+    </wux-landscape>
+    <view class="show">
+      <view class="searchBar">
+        <ashe-searchBar
+          list="{{ projectList }}"
+          bind:action="searchChange"
+          actualValue="ProjectID"
+          showValue="ProjectName"
+          inputValue="{{ defaultValue }}"
+        ></ashe-searchBar>
+      </view>
+      <view class="wrp">
+        <view>
+          <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}"></image>
+          <div class="userinfo-nickname">{{ userInfo.nickName }}</div>
+        </view>
+        <view>
+          <text class="font-style">砖块</text>
+          <progress
+            percent="{{ bricks }}"
+            stroke-width="10"
+            activeColor="#ffeba8"
+            backgroundColor="#ffffff"
+            border-radius="50rpx"
+            show-info="true"
+            font-size="28rpx"
+          />
+        </view>
+        <view>
+          <ashe-popover></ashe-popover>
+        </view>
+      </view>
+      <view class="img-button">
+        <view>
+          <button class="img-button-item" @tap="ranking">
+            <img class="img" src="/static/ranking.png" />
+            <p class="img-button-font">排行</p>
+          </button>
+          <!-- <button class="item" @tap="ranking">排行</button> -->
+        </view>
+        <view>
+          <button class="img-button-item" @tap="restriction">
+            <img class="img" src="/static/restriction.png" />
+            <p class="img-button-font">限行</p>
+          </button>
+          <!-- <button class="item" @tap="restriction">限行</button> -->
+        </view> 
+        <view> 
+          <button class="img-button-item" open-type="share">
+            <img class="img" src="/static/share.png" />
+            <p class="img-button-font">盖房</p>
+          </button>
+          <!-- <button open-type="share" class="item">盖房</button> -->
+        </view>
+        <view>
+          <button class="img-button-item" @tap="introduction">
+            <img class="img" src="/static/project.png" />
+            <p class="img-button-font">项目</p>
+          </button>
+          <!-- <button class="item" @tap="introduction">项目</button> -->
+        </view>
+        <view>
+          <button class="img-button-item" @tap="rule">
+            <img class="img" src="/static/rule.png" />
+            <p class="img-button-font">规则</p>
+          </button>
+          <!-- <button class="item" @tap="rule">规则</button> -->
+        </view>
+      </view>
+    </view>
+    <view class="animation">
+      <ashe-animation dataRooms="{{ dataRooms }}"> </ashe-animation>
+    </view>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+var app = getApp();
+wepy.page({
+  data: {
+    landscapeVisible: false,
+    popupVisible: false,
+    authorizeVisible: false,
+    attention: '',
+    projectList: [],
+    defaultValue: '',
+    dataRooms: 3,
+    userInfo: {
+      nickName: '加载中...'
+    },
+    bricks: -1
+  },
+
+  // 转发的回调函数
+  onShareAppMessage: async function(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(
+        'open button share',
+        res.target,
+        'pid',
+        this.$app.$options.globalData.userid
+      );
+    }
+
+    return {
+      title: '帮我安家吧',
+      path:
+        '/pages/homepage/homepage?pid=' +
+        this.$app.$options.globalData.userid +
+        '&projectid=' +
+        this.$app.$options.globalData.currentProject.ProjectID +
+        '&openPopup=true'
+    };
+  },
+
+  methods: {
+    onShareTimeline: function() {
+      console.log('share to timeline: ', this);
+
+      return {
+        title: '帮我来盖房，管饭！',
+        query:
+          'pid=' +
+          this.$wepy.$app.$options.globalData.userid +
+          '&projectid=' +
+          this.$wepy.$app.$options.globalData.currentProject.ProjectID +
+          '&openPopup=true'
+      };
+    },
+    userInfoCallback(e) {
+      console.log(e, 'userInfoCallback'),
+        (this.userInfo = e.$wx.detail.userInfo),
+        (this.popupVisible = this.$app.$options.globalData.openPopup),
+        wx.request({
+          url: 'https://xcx.zhenghaodichan.com/api/v1/user/create',
+          header: {
+            'content-type': 'application/json'
+          },
+          method: 'POST',
+          data: {
+            userId: this.$app.$options.globalData.userid,
+            userName: e.$wx.detail.userInfo.nickName,
+            path: e.$wx.detail.userInfo.avatarUrl
+          }
+        });
+    },
+
+    authorize() {
+      this.authorizeVisible = false;
+    },
+
+    setDataRooms(that, bricks) {
+      if (bricks < 5) {
+        setTimeout(() => {
+          that.dataRooms = 3;
+        }, 1000);
+      } else if (bricks < 10) {
+        setTimeout(() => {
+          that.dataRooms = 4;
+        }, 1000);
+      } else if (bricks < 20) {
+        setTimeout(() => {
+          that.dataRooms = 5;
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          that.dataRooms = 6;
+        }, 1000);
+      }
+    },
+
+    setPoints(that, openid) {
+      var gData = that.$app.$options.globalData;
+      console.log('in setPoints', gData);
+      wx.request({
+        url: 'https://xcx.zhenghaodichan.com/api/v1/integration/points',
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+        data: {
+          projectId: parseInt(gData.currentProject.ProjectID),
+          userId: openid
+        },
+        success(res) {
+          // console.log("11",res.data.points,res.data.points === undefined,res.data.points !== undefined)
+          if (res.data.points === undefined) {
+            // console.log("22")
+            return;
+          }
+          gData.userPoints = res.data.points;
+          that.bricks = res.data.points;
+          console.log(that.bricks, 'that.bricks');
+          that.$options.methods.setDataRooms(that, res.data.points);
+        }
+      });
+    },
+
+    constantlySetPoints(that, openid) {
+      var gData = that.$app.$options.globalData;
+      console.log(gData, '======gData');
+      wx.request({
+        url: 'https://xcx.zhenghaodichan.com/api/v1/integration/points',
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+        data: {
+          projectId: parseInt(gData.currentProject.ProjectID),
+          userId: openid
+        },
+        success(res) {
+          // console.log("1",res.data.points,res.data.points === undefined)
+          if (res.data.points === undefined) {
+            // console.log("2")
+            return;
+          }
+
+          that.bricks = gData.userPoints;
+          that.$options.methods.setDataRooms(that, res.data.points);
+
+          let count = res.data.points - gData.userPoints;
+          console.log(
+            count,
+            gData.userPoints,
+            that.bricks,
+            res.data.points,
+            '-------------difference'
+          );
+          if (count && count > 0) {
+            console.log('1111, 不相等');
+
+            wx.showToast({
+              title: '增加' + count + '块砖',
+              image: '/static/bricks.png',
+              icon: 'none',
+              duration: 5000
+            });
+            gData.userPoints = res.data.points;
+            that.bricks = gData.userPoints;
+            console.log(that.bricks, count, 'that.bricks and count');
+          }
+        }
+      });
+    },
+
+    onClose() {
+      this.landscapeVisible = false;
+    },
+
+    onPopupClose() {
+      this.popupVisible = false;
+    },
+
+    onAuthorizeClose() {
+      this.authorizeVisible = false;
+    },
+
+    searchChange(e) {
+      console.log('searchChange', e);
+    },
+
+    ranking() {
+      wx.navigateTo({
+        url: '/pages/ranking/ranking'
+      });
+    },
+
+    restriction() {
+      wx.navigateTo({
+        url: '/pages/restriction/restriction'
+      });
+    },
+
+    introduction() {
+      wx.navigateTo({
+        url: '/pages/introduction/introduction'
+      });
+    },
+
+    rule() {
+      wx.navigateTo({
+        url: '/pages/rule/rule'
+      });
+    },
+
+    settle() {
+      // 将下面的验证逻辑包裹在 button 中, 点击助力才触发
+      // 这里调用后台加积分的 api， 成功或者返回重复助力
+      var gData = this.$app.$options.globalData;
+      wx.request({
+        url: 'https://xcx.zhenghaodichan.com/api/v1/integration/create',
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+        data: {
+          projectId: parseInt(gData.projectid),
+          userId: gData.pid,
+          helpUserId: gData.userid
+          // boostPoints: gData.currentProject.AddPoints
+        },
+        success(res) {
+          if (res.data.status === 200) {
+            wx.showToast({
+              title: '助力成功',
+              icon: 'success',
+              duration: 3000
+            });
+          } else {
+            wx.showToast({
+              title: res.data.err,
+              icon: 'none',
+              duration: 3000
+            });
+          }
+        }
+      });
+
+      this.popupVisible = false;
+    }
+  },
+
+  onLoad: async function() {
+    // get current userId
+
+    var that = this;
+    var gData = that.$app.$options.globalData;
+    let res = await wx.cloud.callFunction({
+      name: 'getOpenID'
+    });
+
+    console.log(gData.landscapeVisible, 'gData.landscapeVisible2');
+    that.landscapeVisible = gData.landscapeVisible;
+    gData.userid = res.result.openid;
+
+    wx.getSetting({
+      success(res) {
+        console.log(res, '是否授权？');
+        if (res.authSetting['scope.userInfo']) {
+          console.log(gData.openPopup, 'gData.openPopup');
+          that.popupVisible = gData.openPopup;
+          wx.getUserInfo({
+            success: function(res) {
+              that.userInfo = res.userInfo;
+            }
+          });
+        } else {
+          that.authorizeVisible = true;
+        }
+      }
+    });
+
+    // load 该页面后更新一次下拉框
+    wx.request({
+      url: 'https://xcx.zhenghaodichan.com/api/v1/project/list',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success(res) {
+        console.log(res, 'res');
+        if (res.data.Projects && res.data.Projects.length > 0) {
+          gData.projectList = res.data.Projects;
+          gData.currentProject = gData.projectList[0];
+
+          // 设置当前主页下拉框的项目列表数据更新。
+          that.projectList = gData.projectList;
+          that.defaultValue = gData.currentProject.ProjectName;
+        }
+      }
+    });
+
+    that.$options.methods.setPoints(that, res.result.openid);
+
+    setInterval(() => {
+      that.$options.methods.constantlySetPoints(that, res.result.openid);
+    }, 5000);
+    // setPoints(gData, that.bricks, res.result.openid)
+  },
+
+  created() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    });
+  }
+});
+</script>
+
+<config>
+{
+  // "navigationBarTitleText": "安家",
+  "usingComponents": {
+    "wux-landscape": "../../components/es/landscape/index",
+    "wux-button": "../../components/es/button/index",
+    "wux-popup": "../../components/es/popup/index",
+    "ashe-animation": "../animation/animation",
+    // "ashe-bricks": "../animation/bricks",
+    "ashe-searchBar": "./searchBar",
+    "ashe-popover": "./popover",
+  }
+}
+</config>

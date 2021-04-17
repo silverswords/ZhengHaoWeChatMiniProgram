@@ -1,0 +1,73 @@
+<style lang="less">
+.text {
+  margin-bottom: 30rpx;
+}
+</style>
+
+<template>
+  <div class="container">
+    <text class="text">{{ intro }}</text>
+
+    <view wx:for="{{ images }}">
+      <view wx:if="{{ item.path == ' ' }}"></view>
+      <view wx:else>
+        <image
+          style="width=100vw; background-color: #eeeeee;"
+          src="{{ item.path }}"
+          mode="widthFix"
+          data-index="{{index}}"
+          @tap="clickImg"
+        />
+      </view>
+    </view>
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+
+wepy.page({
+  data: {
+    intro: "",
+    images: [],
+    // condition: "",
+  },
+  
+  onLoad() {
+    var a = this.$app.$options.globalData.currentProject
+    this.images= [
+      {path: a.PathOne},
+      {path: a.PathTwo},
+      {path: a.PathThree},
+      {path: a.PathFour},
+      {path: a.PathFive},
+      {path: a.PathSix},
+      {path: a.PathSeven},
+      {path: a.PathEight},
+      {path: a.PathNine},
+    ];
+    this.intro = a.Introduction;
+  },
+  methods: {
+    clickImg(e) {
+      let index = e.currentTarget.dataset.index
+      let previewImage = []
+      for (let i = 0 ; i< this.images.length; i++ ) {
+        previewImage.push(this.images[i].path)
+      }
+      wx.previewImage({
+        current: previewImage[index],
+        urls: previewImage,
+      })
+    }
+  }
+});
+</script>
+
+<config>
+{
+  "navigationBarTitleText": "项目简介",
+  "usingComponents": {
+  }
+}
+</config>

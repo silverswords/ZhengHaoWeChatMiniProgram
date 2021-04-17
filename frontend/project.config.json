@@ -1,0 +1,87 @@
+{
+  "description": "A WePY project",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false
+  },
+  "compileType": "miniprogram",
+  "appid": "wxb72770945cb8ed97",
+  "projectname": "ashe",
+  "miniprogramRoot": "weapp/",
+  "cloudfunctionRoot": "cloud/",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "libVersion": "2.14.0",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "带参数",
+          "pathName": "pages/homepage/homepage",
+          "query": "pid=sadofjiojklewjjsdihjko&projectid=1000000&openPopup=true",
+          "scene": 1044,
+          "shareInfo": {
+            "groupName": "测试模拟群0",
+            "shareName": "6emex2QuqRz3jGZC89r2MyaDLDbRfRBjMRbyVokq5Ws@cr4dev",
+            "shareKey": "gAtjD87_p3Rpx0vSCXW26RhSCaqainLjNUjh2GlnJFLeXTGSycZfT5JNa2HBogw4DhIqrRAt3JNLtIAStZ-D8Q~~"
+          }
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/animation/house",
+          "pathName": "pages/animation/house",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/animation/island",
+          "pathName": "pages/animation/island",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/homepage/homepage",
+          "pathName": "pages/homepage/homepage",
+          "query": "pid=sadofjiojklewjfioajsdiofjashfi&projectid=1000000&openPopup=true",
+          "scene": 1046
+        }
+      ]
+    }
+  }
+}
